@@ -1,11 +1,11 @@
 variable "region" {
   type    = string
-  default = "us-east-1"
+  default = "us-west-2"
 }
 
 variable "lambda_function_name" {
   type    = string
-  default = "align-jobs-scraper"
+  default = "jobs-mini-sentinel"
 }
 
 variable "schedule_expression" {
