@@ -1,4 +1,4 @@
-# Align Jobs Scraper 🚀
+# Jobs-Mini-Sentinel 🚀
 
 This project is a **Python-based scraper** that checks new job postings from [Align Technology Careers](https://jobs.aligntech.com/) and filters them by country and keyword.
 
@@ -25,8 +25,14 @@ Additionally, this project can be extended to **send results as Telegram message
 - AWS account (free tier is enough).
 - S3 bucket for Terraform state (or reuse an existing one).
 - GitHub repository with **Secrets**:
-  - `AWS_ACCESS_KEY_ID`
-  - `AWS_SECRET_ACCESS_KEY`
+  - `aws iam create-user --user-name jobs-mini-sentinel`
+  - Get the to add them to GitHub Secrets `AWS_ACCESS_KEY_ID`
+  - Get the to add them to GitHub Secrets `AWS_SECRET_ACCESS_KEY`
+
+  - `aws s3api create-bucket \
+  --bucket jobs-mini-sentinel \
+  --region us-west-2 \
+  --create-bucket-configuration LocationConstraint=us-west-2`
 
 ---
 
