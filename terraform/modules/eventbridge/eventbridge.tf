@@ -6,7 +6,7 @@ resource "aws_cloudwatch_event_rule" "schedule" {
 resource "aws_cloudwatch_event_target" "lambda" {
   rule      = aws_cloudwatch_event_rule.schedule.name
   target_id = "lambda"
-  arn       = aws_lambda_function.this.arn
+  arn       = var.lambda_arn
 }
 
 resource "aws_lambda_permission" "allow_eventbridge" {

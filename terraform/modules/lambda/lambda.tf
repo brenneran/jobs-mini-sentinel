@@ -4,10 +4,10 @@ resource "aws_lambda_function" "this" {
   handler       = "lambda_function.lambda_handler"
   runtime       = "python3.11"
 
-  filename         = "${path.module}/../../build/package.zip"
-  source_code_hash = filebase64sha256("${path.module}/../../build/package.zip")
+  filename         = "${path.root}/../package.zip"
+  source_code_hash = filebase64sha256("${path.root}/../package.zip")
 
-  timeout = 30
+  timeout     = 30
   memory_size = 256
 
   environment {
