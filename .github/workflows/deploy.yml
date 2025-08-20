@@ -24,6 +24,11 @@ jobs:
           cp lambda_function.py build/
           cp align-devops.py build/
           cd build && zip -r ../package.zip .
+          
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.10.0
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
