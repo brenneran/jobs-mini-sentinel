@@ -21,3 +21,14 @@ def send_to_telegram(message: str):
             print("✅ Telegram message sent successfully")
     except Exception as e:
         print(f"⚠️ Exception while sending to Telegram: {e}")
+
+# 🔹 Required Lambda handler function
+def lambda_handler(event, context):
+    jobs = fetch_jobs()
+    if jobs:
+        msg = "\n".join([f"- {job['title']} ({job['location']}) → {job['url']}" for job in jobs])
+        send_to_telegram(f"✅ New vacancies found:\n{msg}")
+        return {"jobs": jobs}
+    else:
+        send_to_telegram("❌ No suitable vacancies found outside excluded countries.")
+        return {"message": "No suitable vacancies found."}
