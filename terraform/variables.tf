@@ -12,3 +12,11 @@ variable "schedule_expression" {
   type    = string
   default = "rate(7 days)"
 }
+
+variable "bot_token" {
+  type = string
+}
+
+variable "chat_id" {
+  type = string
+}

@@ -34,6 +34,9 @@ jobs:
 
       - name: Deploy with Terraform
         working-directory: ./terraform
+        env:
+          TF_VAR_bot_token: ${{ secrets.BOT_TOKEN }}
+          TF_VAR_chat_id: ${{ secrets.CHAT_ID }}
         run: |
           terraform init
           terraform apply -auto-approve

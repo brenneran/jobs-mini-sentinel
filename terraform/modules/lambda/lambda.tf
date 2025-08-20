@@ -14,6 +14,8 @@ resource "aws_lambda_function" "this" {
     variables = {
       SEARCH_TERM      = "DevOps"
       FILTER_COUNTRIES = "India,China"
+      BOT_TOKEN        = var.bot_token
+      CHAT_ID          = var.chat_id
     }
   }
 }

@@ -12,6 +12,8 @@ module "lambda" {
   lambda_function_name = var.lambda_function_name
   role_arn             = module.iam.lambda_role_arn
   region               = var.region
+  bot_token = var.bot_token
+  chat_id   = var.chat_id
 }
 
 module "eventbridge" {

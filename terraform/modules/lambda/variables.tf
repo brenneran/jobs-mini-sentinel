@@ -9,3 +9,11 @@ variable "role_arn" {
 variable "region" {
   type = string
 }
+
+variable "bot_token" {
+  type = string
+}
+
+variable "chat_id" {
+  type = string
+}
