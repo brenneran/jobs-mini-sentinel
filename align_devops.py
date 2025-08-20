@@ -2,8 +2,9 @@ import os
 import requests
 from bs4 import BeautifulSoup
 
-SEARCH_TERM = os.getenv("DevOps") # Split by comma
-FILTER_COUNTRIES = [c.strip() for c in os.getenv("India").split(",")] # Split by comma
+# Read env vars with defaults
+SEARCH_TERM = os.getenv("SEARCH_TERM", "DevOps")
+FILTER_COUNTRIES = [c.strip() for c in os.getenv("FILTER_COUNTRIES", "India").split(",")]
 
 URL = f"https://jobs.aligntech.com/search-job?search={SEARCH_TERM}"
 
@@ -15,16 +16,16 @@ def fetch_jobs():
     jobs = []
     for row in soup.select(".rt-tr-group"):
         title_tag = row.select_one("a.text-bold")
-        location_tag = row.get("data-location") or row.find("div", {"title": True})
+        location = row.get("data-location") or row.find("div", {"title": True})
 
-        if not title_tag or not location_tag:
+        if not title_tag or not location:
             continue
 
         title = title_tag.get_text(strip=True)
-        location = row.get("data-location") or location_tag.get_text(strip=True)
+        location = row.get("data-location") or location.get_text(strip=True)
         link = "https://jobs.aligntech.com" + title_tag.get("href")
 
-        # Country filter
+        # Exclude jobs in certain countries
         if any(country in location for country in FILTER_COUNTRIES):
             continue
 
